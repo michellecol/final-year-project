@@ -9,7 +9,10 @@ import mne
 import os
 
 from pipeline_stages.preprocessing import *
+from pipeline_stages.rename_raw_data import rename_raw_data
 from pipeline_stages.repair_event_data import *
+
+rename_raw_data()
 
 for subject in subjects:
         for trial in trials:
@@ -17,6 +20,7 @@ for subject in subjects:
                 print("Now pipelining subject: " + subject + ", trial: " + trial + ", task: " + task)
                 file_name = "{}_{}_{}.bdf".format(subject, trial, task)
                 file_loc = os.path.join(folder_loc, subject, file_name)
+                
                 raw = mne.io.read_raw_bdf(file_loc, preload=True)
                 raw = preprocessing(raw)
                 if subject in to_be_repaired:

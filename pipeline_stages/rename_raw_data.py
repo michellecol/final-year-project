@@ -7,50 +7,53 @@ def rename_raw_data():
         #print(folder_loc + folder)
         if folder in blacklist_folders:
             continue
-        for file in os.listdir(folder_loc + folder):
-            subject = folder
-            #print(os.path.join(folder_loc, folder, file))
-            #This takes each file and assigns its trial as 1 or 2, 
-            # depending on whether or not the string "Exp2b" is in the original name
-            if "_1_SG".lower() in file.lower() or \
-                "_1_VS".lower() in file.lower() or \
-                "_1_VPA".lower() in file.lower() or \
-                "_2_SG".lower() in file.lower() or \
-                "_2_VS".lower() in file.lower() or \
-                "_2_VPA".lower() in file.lower():
-                continue
 
-            if ".bdf".lower() not in file.lower():
-                continue
+        if folder in subjects:
+            for file in os.listdir(folder_loc + folder):
+                subject = folder
+                #print(os.path.join(folder_loc, folder, file))
+                #This takes each file and assigns its trial as 1 or 2, 
+                # depending on whether or not the string "Exp2b" is in the original name
+                if "_1_SG".lower() in file.lower() or \
+                    "_1_VS".lower() in file.lower() or \
+                    "_1_VPA".lower() in file.lower() or \
+                    "_2_SG".lower() in file.lower() or \
+                    "_2_VS".lower() in file.lower() or \
+                    "_2_VPA".lower() in file.lower():
+                    print("File " + file + " already exists")
+                    continue
 
-            if "Exp2b".lower() in file.lower():
-                trial = "2"
-            else:
-                trial = "1"
+                if ".bdf".lower() not in file.lower():
+                    continue
 
-            if " VPA".lower() in file.lower():
-                task = "VPA"
+                if "Exp2b".lower() in file.lower():
+                    trial = "2"
+                else:
+                    trial = "1"
 
-            elif "Spatial".lower() in file.lower():
-                task = "SG"
+                if " VPA".lower() in file.lower():
+                    task = "VPA"
 
-            elif "Visual Search".lower() in file.lower():
-                task = "VS"
+                elif "Spatial".lower() in file.lower():
+                    task = "SG"
 
-            elif "finger".lower() in file.lower():
-                continue
+                elif "Visual Search".lower() in file.lower():
+                    task = "VS"
 
-            elif "eyes".lower() in file.lower():
-                continue
-            else:
-                print("Did not find task for " + file)
-                continue
+                elif "finger".lower() in file.lower():
+                    continue
 
-            old_filename = os.path.join(folder_loc, folder, file)
-            new_filename = f"D:\\{subject}\\{subject}_{trial}_{task}.bdf"
-            print("Renaming " + old_filename + " to: " + new_filename )
+                elif "eyes".lower() in file.lower():
+                    continue
+                else:
+                    print("Did not find task for " + file)
+                    continue
 
-        # os.rename(old_filename, new_filename)
+                old_filename = os.path.join(folder_loc, folder, file)
+                new_filename = f"D:\\{subject}\\{subject}_{trial}_{task}.bdf"
+                print("Renaming " + old_filename + " to: " + new_filename )
+
+                os.rename(old_filename, new_filename)
 
 
 
