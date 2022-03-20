@@ -32,7 +32,7 @@ for subject in subjects:
                 raw = event_data_processing(raw, task)
                 file_name_cleaned = "{}_{}_{}_(Cleaned).fif".format(subject, trial, task)
                 file_loc = os.path.join(folder_loc, subject, file_name_cleaned)
-                raw.save(file_loc)
+                raw.save(file_loc, overwrite=True)
                 print("Cleaned file " + file_name_cleaned + " saved")
 
                  
