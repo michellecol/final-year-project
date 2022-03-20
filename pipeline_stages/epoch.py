@@ -5,17 +5,17 @@ mne.set_log_level('CRITICAL')
 
 # The following variables should contain the location of the EEG files, 
 # as well as the subjects, and trials that are to have events corrected.
-subjects = ["56"]
+subjects = ["25"]
 trials = ["1"]
 tasks = ["VPA"]
-folder_loc = f"C:\\Users\\mozee\\Desktop\\EEG\\"
+folder_loc = f"D:\\"
 
 
 for subject in subjects:
     for trial in trials:
         for task in tasks:
             file_name = "{}_{}_{}_(cleaned).fif".format(subject, trial, task)
-            file_loc = os.path.join(folder_loc, subject, subject, file_name)
+            file_loc = os.path.join(folder_loc, subject, file_name)
             raw = mne.io.read_raw_fif(file_loc, preload=True)
             
             events = mne.find_events(raw, stim_channel='Status')

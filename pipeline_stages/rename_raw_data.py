@@ -20,7 +20,7 @@ def rename_raw_data():
                     "_2_SG".lower() in file.lower() or \
                     "_2_VS".lower() in file.lower() or \
                     "_2_VPA".lower() in file.lower():
-                    print("File " + file + " already exists")
+                    print("File " + file + "  already exists")
                     continue
 
                 if ".bdf".lower() not in file.lower():
