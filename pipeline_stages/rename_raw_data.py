@@ -12,6 +12,14 @@ def rename_raw_data():
             #print(os.path.join(folder_loc, folder, file))
             #This takes each file and assigns its trial as 1 or 2, 
             # depending on whether or not the string "Exp2b" is in the original name
+            if "_1_SG".lower() in file.lower() or \
+                "_1_VS".lower() in file.lower() or \
+                "_1_VPA".lower() in file.lower() or \
+                "_2_SG".lower() in file.lower() or \
+                "_2_VS".lower() in file.lower() or \
+                "_2_VPA".lower() in file.lower():
+                continue
+
             if ".bdf".lower() not in file.lower():
                 continue
 
@@ -20,7 +28,7 @@ def rename_raw_data():
             else:
                 trial = "1"
 
-            if "VPA".lower() in file.lower():
+            if " VPA".lower() in file.lower():
                 task = "VPA"
 
             elif "Spatial".lower() in file.lower():
